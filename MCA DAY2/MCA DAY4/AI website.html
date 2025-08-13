@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .header{
+            background-color: rgb(114, 96, 119);
+            padding: 40px;
+        }
+        .nav1,.nav3{
+            width: 40%;
+        }
+
+        .nav1 ul{
+            display: flex;
+            justify-content: space-evenly;
+            list-style: none;
+
+        }
+        .nav2 ul{
+            display: flex;
+            list-style: none;
+        }
+        .nav3 ul{
+            display: flex;
+            list-style: none;
+            justify-content: space-evenly;
+        }
+       .fullnav{
+        display: flex;
+        justify-content: space-evenly;
+       
+       }
+       .container img{
+        width: 100%;
+        height: 400px;
+       }
+       .content{
+        display: flex;
+        justify-content: space-evenly;
+       }
+      .card{
+                height: 300px;
+                width: 200px;
+                border: 2px solid black;
+                box-shadow: 5px 5px 50px solid rgb(14, 14, 15);
+                
+            }
+            .card img{
+                height: 70%;
+                width: 100%;
+                
+            }
+            .container1{
+                 display: flex;
+                 justify-content: space-evenly;
+                 gap:20px;              
+            }
+            .con {
+                display: flex;
+                justify-content: space-around;
+            }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="fullnav">
+        <nav class="nav1">
+            <ul>
+                <li>HOME</li>
+                <li>ABOUT</li>
+                <li>CONTACT</li>
+                <li>LOGIN IN</li>
+                <li>MORE</li>
+            </ul>
+        </nav>
+        <nav class="nav2">
+            <ul>
+                <li>BUILT IN</li>
+            </ul>
+        </nav>
+        <nav class="nav3">
+
+            <ul>
+                <input type="search" placeholder="Search...">
+                <li>ADD TO CARD</li>
+                <li>LOGIN</li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+        <img src="https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2023/06/Website-Development-alt-1.jpg"><br>
+        <br><br><br>
+        </div>
+        <div class="content">
+        <button>JOBS</button>
+        <button>COMPANIES</button>
+        <button>REMOTE</button>
+        <button>ARTICLES</button>
+        </div>
+        <br><br><br><br>
+        <div class="con">
+         <div class="container1">
+        <div class="card">
+        <img src="https://i.ytimg.com/vi/50VzzjpDa8Q/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD3lylDocp5UYcPFqgL1bHtT14XIg">
+        <p>login-(sigin or create an account)</p>
+        </div>
+        <div class="card">
+        <img src="https://myexeed.com/wp-content/uploads/2023/10/11.webp">
+        <p>AI SITE-(to create and manage website)</p>
+        </div>
+        <div class="card">
+         <img src="https://img.uxcel.com/cdn-cgi/image/format=auto/tags/content-design-1691391482384-2x.jpg">
+        <p>content-(to manage jobs and companies)</p>
+        </div>
+        <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjV6gRE1gUM6FTnI8FWTvQ2eDAPwth5Mc8lg&s">
+        <p>assessibility-(to perform a task)</p>
+        </div>
+        <div class="card">
+        <img src="https://www.shutterstock.com/image-photo/using-laptop-show-icon-address-600nw-2521386695.jpg">
+        <p>contact-(to reach us)</p>
+        </div>
+    </div>
+         
+        
+</div>
+    </main>
+</body>
+</html>
