@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carousel page</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url("assets/background.png") no-repeat center center/cover;
+      font-family: Arial, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .navbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;  
+      align-items: center;
+      padding: 15px 40px;
+      box-sizing: border-box;
+      color: rgb(222, 234, 238);
+      font-size: 18px;
+      z-index: 20;
+      background: linear-gradient(to bottom, rgba(172, 234, 238, 0.7), rgba(117, 110, 110, 0));
+    }
+
+    .navbar ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar li {
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .navbar li:hover {
+      color: #84cee7;
+    }
+
+  
+    .search-bar {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-container {
+      position: relative;
+      width: 220px;
+      transition: 0.4s ease;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 8px 40px 8px 15px;
+      border-radius: 25px;
+      border: 1px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.1); 
+      backdrop-filter: blur(6px);        
+      color: rgba(236, 214, 214, 0.534);
+      font-size: 18px;
+      outline: none;
+      transition: 0.4s;
+    }
+
+    .search-container input::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .search-container input:focus {
+      border-color: #00bfff;
+      background: rgba(255,255,255,0.15);
+      box-shadow: 0 0 10px #00bfff;
+      width: 280px;
+    }
+
+    .search-container i {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.8);
+      pointer-events: none;
+      font-size: 16px;
+    }
+
+
+    .thumbnail-strip {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .thumb-viewport {
+      width: 520px;                 
+      overflow-x: auto;             
+      overflow-y: hidden;
+      scroll-behavior: smooth;      
+      -ms-overflow-style: none;     
+      scrollbar-width: none;        
+    }
+    .thumb-viewport::-webkit-scrollbar { display: none; }
+
+    .thumbnails {
+      display: flex;
+      gap: 12px;
+    }
+
+    .thumbnails img {
+      width: 90px;
+      height: 55px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: 0.25s;
+      user-select: none;
+      -webkit-user-drag: none;
+      border: 2px solid transparent;
+    }
+
+    .thumbnails img:hover {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+    .thumbnails img.active {
+      opacity: 1;
+      border: 2px solid #85d7e2;
+      transform: scale(1.1);
+    }
+
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      padding: 0;
+      line-height: 0;
+    }
+    .arrow img {
+      width: 45px;
+      height: 45px;
+      display: block;
+      pointer-events: none;
+    }
+    .left  { left: 20px; }
+    .right { right: 20px; }
+  </style>
+</head>
+<body>
+
+
+    <div class="navbar">
+    <ul class="left-menu">
+      <li>Home</li>
+      <li>Movies</li>
+      <li>Series</li>
+      <li>Favourites</li>
+    </ul>
+
+    
+
+    <div class="search-bar">
+      <div class="search-container">
+        <input type="text" placeholder="Search...">
+        <i>🔍</i>
+      </div>
+    </div>
+
+    <ul class="right-menu">
+      <li>Language</li>
+      <li>My List</li>
+      <li>Profile</li>
+    </ul>
+  </div>
+
+    
+  <button class="arrow left" id="btnLeft" aria-label="Previous">
+    <img src="assets/arrow 2.png" alt="Left"/>
+  </button>
+
+  
+  <div class="thumbnail-strip">
+    <div class="thumb-viewport" id="thumbViewport">
+      <div class="thumbnails" id="thumbnails">
+        <img src="assets/img.jpg"  alt="loading">
+        <img src="assets/dark anime.jpg"  alt="loading">
+        <img src="assets/genshin-impact.jpg" alt="loading">
+        <img src="assets/purple anime.jpg" alt="loading">
+        <img src="assets/teal anime.jpg"  alt="loading">
+        <img src="assets/wallpaperflare.jpg" alt="loading">
+      </div>
+    </div>
+  </div>
+
+
+  <button class="arrow right" id="btnRight" aria-label="Next">
+    <img src="assets/arrow 1.png" alt="Right"/>
+  </button>
+
+  <script>
+    const viewport = document.getElementById('thumbViewport');
+    const thumbsTrack = document.getElementById('thumbnails');
+    const thumbs = thumbsTrack.querySelectorAll('img');
+
+    function getStep() {
+      const first = thumbsTrack.querySelector('img');
+      if (!first) return 100;
+      const gap = parseInt(getComputedStyle(thumbsTrack).gap) || 12;
+      return Math.round(first.getBoundingClientRect().width) + gap;
+    }
+
+    function slideLeft() {
+      viewport.scrollBy({ left: -getStep(), behavior: 'smooth' });
+    }
+    function slideRight() {
+      viewport.scrollBy({ left:  getStep(), behavior: 'smooth' });
+    }
+
+    document.getElementById('btnLeft').addEventListener('click', slideLeft);
+    document.getElementById('btnRight').addEventListener('click', slideRight);
+
+
+    thumbs.forEach(img => {
+      img.addEventListener('click', () => {
+        thumbs.forEach(t => t.classList.remove('active'));
+        img.classList.add('active');
+      });
+    });
+
+
+    viewport.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
+        viewport.scrollLeft += e.deltaY;
+        e.preventDefault();
+      }
+    }, { passive: false });
+  </script>
+</body>
+</html>

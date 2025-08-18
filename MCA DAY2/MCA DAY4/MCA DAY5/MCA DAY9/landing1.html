@@ -1,0 +1,135 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+    *{
+        margin: 0;
+        padding: 0;
+    }
+        #container{
+            transition-duration: 1s;
+            background-image:url('MCA DAY2/assest/backround.jpg');
+            height: 100vh;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        .mini{
+            position: absolute;
+            bottom: 0;
+            /* padding-left: 0%; */
+        }
+        .mini img{
+            height: 10%;
+            width: 10%;
+            /* padding-top: 500px;
+            cursor: pointer; */
+        
+        }
+        .arrow img{
+            height: 200px;
+        }
+        #arrow1{
+            position: absolute;
+            top: 40% ;
+            left:0;
+            transform: rotateY(180deg);
+        }
+        #arrow2{
+            position: absolute;
+            top: 40% ;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="arrow">
+            <img onclick="prev()" id="arrow1" src="https://eskipaper.com/files/icons/arrow-right.png" alt="loding">
+            <img onclick="next()" id="arrow2" src="https://eskipaper.com/files/icons/arrow-right.png" alt="loding">
+        </div>
+        <div class="mini">
+            <img src="bg.jpeg">
+            <img src="img.jpg">
+            <img src="img1.webp">
+            <img src="img2.jpg">
+            <img src="img3.jpg">
+            <img src="img4.webp">
+            <!-- <img src="img5.jpg">
+            <img src="img6.jpg"> -->
+        </div>
+    </div>
+    <script src="./landing.js"></script>
+</body>
+</html>!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+    *{
+        margin: 0;
+        padding: 0;
+    }
+        #container{
+            transition-duration: 1s;
+            background-image:url('MCA DAY2/assest/img4.jpg');
+            height: 100vh;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        .mini{
+            position: absolute;
+            bottom: 0;
+            /* padding-left: 0%; */
+        }
+        .mini img{
+            height: 10%;
+            width: 10%;
+            /* padding-top: 500px;
+            cursor: pointer; */
+        
+        }
+        .arrow img{
+            height: 200px;
+        }
+        #arrow1{
+            position: absolute;
+            top: 40% ;
+            left:0;
+            transform: rotateY(180deg);
+        }
+        #arrow2{
+            position: absolute;
+            top: 40% ;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="arrow">
+            <img onclick="prev()" id="arrow1" src="https://eskipaper.com/files/icons/arrow-right.png" alt="loding">
+            <img onclick="next()" id="arrow2" src="https://eskipaper.com/files/icons/arrow-right.png" alt="loding">
+        </div>
+        <div class="mini">
+            <img src="MCA DAY2/assest/img.jpg">
+            
+            <img src="MCA DAY2/assest/img1.jpg">
+            <img src="MCA DAY2/assest/img2.jpg">
+            <img src="MCA DAY2/assest/img3.jpg">
+            <img src="MCA DAY2/assest/img4.jpg">
+            <!-- <img src="img5.jpg">
+            <img src="img6.jpg"> -->
+        </div>
+    </div>
+    <script src="./landing.js"></script>
+</body>
+</html>
