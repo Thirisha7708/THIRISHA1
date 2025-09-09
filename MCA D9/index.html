@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Carousel Page</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family: Arial, sans-serif; background:#070707; color:#fff;}
+
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 70px;
+      background: linear-gradient(90deg,#687f8a,#1a1a1a);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 50px;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    }
+    .navbar a {
+      color:#e4d9d9;
+      text-decoration:none;
+      font-weight:bold;
+      transition:color .3s;
+    }
+    .navbar a:hover {color:rgb(29, 85, 77);}
+    .nav-left, .nav-right {display:flex; gap:20px;}
+    .nav-center {flex-grow:1; display:flex; justify-content:center;}
+    .nav-center input {
+      width:300px; padding:5px 10px;
+      border-radius:20px; border:none; outline:none;
+    }
+
+
+    .hero {
+      height: calc(100vh - 70px);
+      margin-top: 70px;
+      background: #111;
+      position:relative; display:flex; align-items:center; justify-content:center;
+      transition: background 1s ease-in-out;
+    }
+
+
+    .arrow {
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:50px; cursor:pointer; z-index:10;
+    }
+    .arrow.left{left:20px;} 
+    .arrow.right{right:20px;}
+
+
+    .card-wrapper {
+      position:absolute; bottom:20px; right:20px;
+      display:flex; gap:0; z-index:1;
+    }
+    .card {
+      width:120px; height:80px;
+      background-size:cover; background-position:center;
+      border-radius:6px; cursor:pointer; flex-shrink:0;
+      transition:transform .3s, border .3s;
+      border:2px solid transparent;
+    }
+    .card.active {border:2px solid rgb(204, 204, 193); transform:scale(1.1);}
+
+
+    .posters-section {padding:80px 50px 50px; background:#222;}
+    .posters-section h2 {text-align:center; margin-bottom:40px; font-size:2rem;}
+    .posters {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:40px; justify-items:center;
+    }
+    .poster {
+      width:280px; height:180px;
+      background-size:cover; background-position:center;
+      border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.5);
+      transition: transform .3s ease;
+    }
+    .poster:hover {transform: scale(1.05);}
+    .poster-info {text-align:center; margin-top:10px; font-size:0.9rem; color:#ddd;}
+
+
+    footer {
+      background:#111; padding:50px; color:#ad8484;
+      text-align:center; margin-top:60px;
+    }
+    footer .footer-content {
+      display:flex; justify-content:space-around; flex-wrap:wrap;
+      gap:30px; margin-bottom:30px;
+    }
+    footer h3 {color:#fff; margin-bottom:15px;}
+    footer p, footer a {font-size:0.9rem; color:#bbb; text-decoration:none;}
+    footer a:hover {color:#2d5768;}
+    footer p.footer-line {color:#ad8484; margin-top:10px;}
+  </style>
+</head>
+<body>
+
+
+  <div class="navbar">
+    <div class="nav-left">
+      <a href="#">Home</a>
+      <a href="#">Series</a>
+      <a href="#">TV</a>
+      <a href="#">Gaming</a>
+    </div>
+    <div class="nav-center">
+      <input type="text" placeholder="Search...">
+    </div>
+    <div class="nav-right">
+      <a href="#">Login</a>
+      <a href="#">Register</a>
+      <a href="#">Profile</a>
+    </div>
+  </div>
+
+
+  <div class="hero" id="hero">
+    <img src="https://cdn-icons-png.flaticon.com/512/109/109618.png" class="arrow left" id="prev" alt="Previous">
+    <img src="https://uxwing.com/wp-content/themes/uxwing/download/arrow-direction/arrow-thin-right-icon.png" class="arrow right" id="next" alt="Next">
+    
+    
+
+    <div class="card-wrapper" id="cardWrapper">
+      <div class="card" style="background-image:url(https://resize.cdn.otakumode.com/ex/1200.630/0.142.730.384/u/4b17317d3c3d45af8449fbfc34fbdb27.jpg)"></div>
+      <div class="card" style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx3V0EEe11ZwaUjwSDSGpmZc5Ac9PqBaOn-DvSLfcp8gO3v3eobF1GiXT8--mIBzdBVOw&usqp=CAU);"></div>
+      <div class="card" style="background-image:url(https://m.media-amazon.com/images/I/61SgOmzhNKL.jpg);"></div>
+      <div class="card" style="background-image:url(https://i.ytimg.com/vi/7mOecLvuww0/mqdefault.jpg);"></div>
+      <div class="card" style="background-image:url(https://i.pinimg.com/736x/23/68/eb/2368ebceea6373b6e0bcd22bd185951b.jpg);"></div>
+      <div class="card" style="background-image:url(https://doraemonworld2018.wordpress.com/wp-content/uploads/2018/03/doraemons-manufacturing.jpg?w=510&h=287);"></div>
+    </div>
+  </div>
+
+
+  <section class="posters-section">
+    <h2>DORAEMON FEATURES</h2>
+    <div class="posters">
+      <div>
+        <div class="poster" style="background-image:url(https://doraemonworld2018.wordpress.com/wp-content/uploads/2018/03/the-4-dimension-pocket.jpg?w=430&h=229);"></div>
+        <p class="poster-info">packet doraemon.</p>
+      </div>
+      <div>
+        <div class="poster" style="background-image:url(https://a-static.besthdwallpaper.com/doraemon-and-his-team-in-space-wallpaper-1600x480-117288_68.jpg);"></div>
+        <p class="poster-info">Doraemon in space</p>
+      </div>
+      <div>
+        <div class="poster" style="background-image:url(https://cdn.suruga-ya.com/database/pics_webp/game/602120757.jpg.webp);"></div>
+        <p class="poster-info">Green doraemon.</p>
+      </div>
+      <div>
+        <div class="poster" style="background-image:url(https://m.media-amazon.com/images/M/MV5BODkzZWUzMjItMmY0OS00NmE2LWJiNjUtMjM1MzJiNTkwYjc3XkEyXkFqcGdeQWxiaWFtb250._V1_.jpg);"></div>
+        <p class="poster-info">Stand by nobita.</p>
+      </div>
+      <div>
+        <div class="poster" style="background-image:url(https://i.pinimg.com/736x/68/9c/c9/689cc9b454bc362656257669af3bc073.jpg);"></div>
+        <p class="poster-info">Doraemon with dorami.</p>
+      </div>
+      <div>
+        <div class="poster" style="background-image:url(https://i.pinimg.com/736x/77/b6/c8/77b6c8e6c42614a8374332a41daa06bd.jpg);"></div>
+        <p class="poster-info">Dorami.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h3>ABOUT US</h3>
+        <p>We are dedicated to bringing anime fans the best experience online. Explore a wide variety of anime series and movies, from timeless classics to the latest releases. Enjoy high-quality visuals, smooth streaming, curated recommendations, and stay updated with the newest episodes and anime news. Whether you’re a seasoned fan or just starting your anime journey, we make sure every visit is a thrilling adventure into the world of anime.</p>
+      </div>
+      <div>
+        <h3>QUICK LINKS</h3>
+        <p><a href="#">Home</a></p>
+        <p><a href="#">Series</a></p>
+        <p><a href="#">TV</a></p>
+        <p><a href="#">Gaming</a></p>
+        <p><a href="#">Favorites</a></p>
+      </div>
+      <div>
+        <h3>CONTACT</h3>
+        <p>Email: series@gmail.com</p>
+        <p>Phone: +91 9789034567</p>
+        <p>Instagram: @doraemonsn_page</p>
+      </div>
+    </div>
+    <p class="footer-line">Follow us on social media for the latest updates & exclusive content!</p>
+    <p class="footer-line">&copy; 2025 Doraemonfeature. All rights reserved. Dive into the world of Doraemon series anytime, anywhere.</p>
+    <p class="footer-line">Doraemon lovers unite — stream, explore, and enjoy your favorite shows here.</p>
+  </footer>
+
+  <script>
+    const hero = document.getElementById('hero');
+    const cards = document.querySelectorAll('.card');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+
+    let originalBackground = "url(https://i.pinimg.com/736x/8c/8e/90/8c8e90f2e261d18022062b978ebab604.jpg)";
+    let index = -1;
+
+    function updateBackground() {
+      cards.forEach(c => c.classList.remove('active'));
+      if (index === -1 || index === cards.length) {
+        hero.style.background = originalBackground + " no-repeat center center/cover";
+        if (index === cards.length) index = -1;
+      } else {
+        hero.style.background = cards[index].style.backgroundImage + " no-repeat center center/cover";
+        cards[index].classList.add('active');
+      }
+    }
+
+    next.addEventListener('click', () => { index++; if (index > cards.length) index = -1; updateBackground(); });
+    prev.addEventListener('click', () => { index--; if (index < -1) index = cards.length; updateBackground(); });
+
+    cards.forEach((card,i) => {
+      card.addEventListener('click', () => { index = i; updateBackground(); });
+    });
+
+    updateBackground();
+  </script>
+
+</body>
+</html>
